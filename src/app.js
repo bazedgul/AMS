@@ -1,4 +1,4 @@
-import express, {urlencoded} from 'express'
+import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 
@@ -11,6 +11,16 @@ app.use(cors({
 app.use(express.json({limit: "16kb"}))
 app.use(express.urlencoded({limit:"16kb", extended: true}))
 app.use(express.static("public"))
-app.use(express.cookieParser())
+app.use(cookieParser())
 
-app.use()
+
+// Routes
+import userRouter from './routes/user.routes.js'
+
+
+// Routes Declaration
+app.use('/api/v1/users', userRouter)
+// https://localhost:8000/api/v1/users/register -> hum user.routes pe chlein jaege - konsa route mujhe call karna hai - register ya login ETC
+// https://localhost:8000/users/login
+
+export {app}
